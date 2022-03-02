@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.Ruserdata
+keys.py
+models/
+literature/
+archive/
+admin/
+__pycache__/

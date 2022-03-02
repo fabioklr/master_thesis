@@ -1,0 +1,10 @@
+{
+    "name": "masterthesis",
+    "build": { "dockerfile": "Dockerfile" },
+    "shutdownAction": "none",
+    "extensions": ["ms-python.python", "ms-python.vscode-pylance"],
+    "workspaceFolder": "/home/vscode/masterthesis",
+    "settings": {
+      "terminal.integrated.shell.linux": "/bin/bash"
+    }
+  } 
