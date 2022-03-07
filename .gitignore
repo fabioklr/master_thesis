@@ -7,3 +7,5 @@ literature/
 archive/
 admin/
 __pycache__/
+data/embeddings.pkl
+data/umap_embeddings.pkl
