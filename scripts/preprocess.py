@@ -1,4 +1,8 @@
 """Preprocess Twitter data.
+
+To use this script, gain access to the Twitter and DeepL APIs on the respective websites. Then, create a file named "keys.py" and place it in the working directory.
+In "keys.py" define the Twitter API's consumer_key and consumer_secret as well as the access_token and access_token_secret. Also define a variable called
+"authentication_key" and assign it to the key of the DeepL API.
 """
 
 import pandas as pd
@@ -13,12 +17,6 @@ from re import findall
 from ekphrasis.classes.segmenter import Segmenter
 from keys import *
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-
-# import pyarrow.ipc as ipc
-# import pyarrow.feather as feather
-# import pyarrow as pa
-# import pandas as pd
-# import numpy as np
 
 # Set pandas options.
 pd.set_option('display.min_rows', 400)
@@ -62,7 +60,7 @@ def main():
         langs_less_than_hundred = [lang for lang, size in tweets.groupby('lang').size().iteritems() if size < 100]
         tweets = tweets[-tweets['lang'].isin(langs_less_than_hundred)]
 
-        # Filter languages that are undefined, non-translatable or with a non-Latin alphabet
+        # Filter languages that are undefined or with a non-Latin alphabet
         tweets = tweets[-tweets['lang'].isin(['und', 'iw', 'ja', 'ar', 'zh', 'th', 'ko', 'el'])]
 
         # Filter authors with less than 100 tweets
@@ -76,7 +74,7 @@ def main():
 
         tweets['processed_text'] = result
 
-        # Remove duplicate rows, i.e. keep only one of multiple tweets with identical author_id and text, and reset the index to 0, 1, ..., n-1
+        # Remove duplicate rows, i.e. keep only one of multiple tweets with identical author_id and text.
         tweets = tweets.drop_duplicates(subset = ['author_id', 'processed_text'], ignore_index = True)
     
     # Remove tweets that are too long for Helsinki University translation models and reset the index.

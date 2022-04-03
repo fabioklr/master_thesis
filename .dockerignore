@@ -1,9 +1,6 @@
 **/logs
 **/.git
 **/.cache
-admin
-archive
-literature
 models/Helsinki-NLP/**
 keys.py
 __pycache__

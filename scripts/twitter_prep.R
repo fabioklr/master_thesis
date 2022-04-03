@@ -12,7 +12,7 @@ for (i in 1:8) {
     }
     else if (d$referenced_tweets[[j]][1, 1] == "quoted" |
              d$referenced_tweets[[j]][1, 1] == "retweeted") {
-      d$reference[j] <- "keep"
+      d$reference[j] <- "discard"
     }
     else if (d$referenced_tweets[[j]][1, 1] == "replied_to") {
       d$reference[j] <- "discard"
